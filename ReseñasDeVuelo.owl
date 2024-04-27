@@ -1,0 +1,462 @@
+@prefix : <http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/> .
+
+<http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo> rdf:type owl:Ontology ;
+                                                                    rdfs:comment "This ontology is about flight reviews"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#sameAs
+rdfs:sameAs rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo#isAbout
+:isAbout rdf:type owl:ObjectProperty ,
+                  owl:AsymmetricProperty ;
+         rdfs:domain :Reviw ;
+         rdfs:range :Flight ;
+         rdfs:comment "A review has been written about a specific topic, in our case the topic will only be flights and thous the range is going to be flights"@en ;
+         rdfs:label "isAbout"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/hasBeenWritenBy
+:hasBeenWritenBy rdf:type owl:ObjectProperty ,
+                          owl:AsymmetricProperty ;
+                 rdfs:domain :Reviw ;
+                 rdfs:range :Passenger ;
+                 rdfs:comment "A review has been written by a given pasenger"@en ;
+                 rdfs:label "hasBeenWritenBy"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/hasFlight
+:hasFlight rdf:type owl:ObjectProperty ,
+                    owl:AsymmetricProperty ;
+           rdfs:domain :Passenger ;
+           rdfs:range :Flight ;
+           rdfs:comment "a airplane passenger has taken a given flight"@en ;
+           rdfs:label "hasFlight"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/hasTakenPlaceIn
+:hasTakenPlaceIn rdf:type owl:ObjectProperty ,
+                          owl:AsymmetricProperty ;
+                 rdfs:domain :Flight ;
+                 rdfs:range :Planes ;
+                 rdfs:comment "a travel has been done in a given airplane"@en ;
+                 rdfs:label "hasTakenPlaceIn"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/isMadeBy
+:isMadeBy rdf:type owl:ObjectProperty ,
+                   owl:AsymmetricProperty ;
+          rdfs:domain :Planes ;
+          rdfs:range :Manufacturer ;
+          rdfs:comment "a plane is manufactured by a given company"@en ;
+          rdfs:label "isMadeBy"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/isPropertyOf
+:isPropertyOf rdf:type owl:ObjectProperty ,
+                       owl:AsymmetricProperty ;
+              rdfs:domain :Planes ;
+              rdfs:range :Flight_company ;
+              rdfs:comment "a given plane is property of a flight company"@en ;
+              rdfs:label "isPropertyOf"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/hasDate
+:hasDate rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Flight ,
+                     :Reviw ;
+         rdfs:range xsd:string ;
+         rdfs:comment "The date of a given event"@en ;
+         rdfs:label "hasDate"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/hasDestinationState
+:hasDestinationState rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :Flight ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "a relaxed way of a location for the end of a flight (just the state name)"@en ;
+                     rdfs:label "hasDestinationState"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/hasOriginState
+:hasOriginState rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Flight ;
+                rdfs:range xsd:string ;
+                rdfs:comment "a relaxed way of a location for the start of a flight (just the state name)"@en ;
+                rdfs:label "hasOriginState"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/hasRating
+:hasRating rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Reviw ;
+           rdfs:range owl:rational ;
+           rdfs:comment "a numerical value given to a thing in order to set a score in some kind of way"@en ;
+           rdfs:label "hasRating"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Airliners
+:Airliners rdf:type owl:Class ;
+           rdfs:subClassOf :Planes ;
+           rdfs:comment "The airplanes which main focus is the trasportation of human being"@en ;
+           rdfs:label "Airliners"@en ;
+           rdfs:sameAs "https://es.dbpedia.org/page/Avión_comercial"@es .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Airplane_flight_review
+:Airplane_flight_review rdf:type owl:Class ;
+                        rdfs:subClassOf :Reviw ;
+                        rdfs:comment "A review about a trip with an airplain"@en ;
+                        rdfs:label "Airplain flight review"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Bussines_class
+:Bussines_class rdf:type owl:Class ;
+                rdfs:subClassOf :Passenger ;
+                owl:disjointWith :Economy_class ,
+                                 :First_class ,
+                                 :Premium_economy ;
+                rdfs:comment "The people who travel in first class on an airplane"@en ;
+                rdfs:label "Bussines class passengers"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Cargo
+:Cargo rdf:type owl:Class ;
+       rdfs:subClassOf :Flight_company ;
+       rdfs:comment "The companys which services relies on transporting goods through the air"@en ;
+       rdfs:label "Airflight cargo company"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Commercial
+:Commercial rdf:type owl:Class ;
+            rdfs:subClassOf :Flight_company ;
+            rdfs:label "comercial Airflight company"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Commuter
+:Commuter rdf:type owl:Class ;
+          rdfs:subClassOf :Airliners ;
+          owl:disjointWith :Narrow-body ,
+                           :Regional ,
+                           :Wide-body ;
+          rdfs:comment "A small plane which which numer of passengers isn't greater than 20"@en ;
+          rdfs:label "Commuter airplane"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Company
+:Company rdf:type owl:Class ;
+         rdfs:comment "The class of companys like Airbus, Boeing, ..."@en ;
+         rdfs:label "Company"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Continental
+:Continental rdf:type owl:Class ;
+             rdfs:subClassOf :Flight ;
+             rdfs:comment "A flight which origin and destination are in the same continent"@en ;
+             rdfs:label "Continental flight"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Economy_class
+:Economy_class rdf:type owl:Class ;
+               rdfs:subClassOf :Passenger ;
+               owl:disjointWith :First_class ,
+                                :Premium_economy ;
+               rdfs:comment "The people who travel in economy class on an airplane"@en ;
+               rdfs:label "Economy class passengers"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/First_class
+:First_class rdf:type owl:Class ;
+             rdfs:subClassOf :Passenger ;
+             owl:disjointWith :Premium_economy ;
+             rdfs:comment "The people who travel in first class on an airplane"@en ;
+             rdfs:label "first class passenger"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Flight
+:Flight rdf:type owl:Class ;
+        rdfs:comment "A movment taken with a kind of aircraft"@en ;
+        rdfs:label "Flight"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Flight_company
+:Flight_company rdf:type owl:Class ;
+                rdfs:subClassOf :Company ;
+                rdfs:comment "The class of the companys which main focus is transportation via air"@en ;
+                rdfs:label "Flight company"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Intercontinental
+:Intercontinental rdf:type owl:Class ;
+                  rdfs:subClassOf :Flight ;
+                  rdfs:comment "A flight which origin and destination are in diferent continents"@en ;
+                  rdfs:label "Intercontinental flight"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Manufacturer
+:Manufacturer rdf:type owl:Class ;
+              rdfs:subClassOf :Company ;
+              rdfs:comment "The companys which services are manufacturing airplanes"@en ;
+              rdfs:label "Airplanes manufacturer"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Narrow-body
+:Narrow-body rdf:type owl:Class ;
+             rdfs:subClassOf :Airliners ;
+             owl:disjointWith :Regional ,
+                              :Wide-body ;
+             rdfs:comment "A type of plane which main caracteristic is that it only has one corridor"@en ;
+             rdfs:label "narrow body plane"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Non-comercial_Planes
+:Non-comercial_Planes rdf:type owl:Class ;
+                      rdfs:subClassOf :Planes ;
+                      rdfs:comment "Planes which main focus isn't the trasportation of people"@en ;
+                      rdfs:label "Non Comercial planes"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Passenger
+:Passenger rdf:type owl:Class ;
+           rdfs:comment "the users of the airplain"@en ;
+           rdfs:label "airplane passenger"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Planes
+:Planes rdf:type owl:Class ;
+        rdfs:comment "The vehice which travels through air"@en ;
+        rdfs:label "Airplanes"@en ;
+        rdfs:sameAs "https://dbpedia.org/page/Aircraft" .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Premium_economy
+:Premium_economy rdf:type owl:Class ;
+                 rdfs:subClassOf :Passenger ;
+                 rdfs:comment "The people who travel in premium class on an airplane"@en ;
+                 rdfs:label "Premium economy passenger"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Regional
+:Regional rdf:type owl:Class ;
+          rdfs:subClassOf :Airliners ;
+          owl:disjointWith :Wide-body ;
+          rdfs:comment "A plane which just can transport under 100 people"@en ;
+          rdfs:label "Regional airplane"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Reviw
+:Reviw rdf:type owl:Class ;
+       rdfs:comment "A comentary with a rating about something"@en ;
+       rdfs:label "Review" ;
+       rdfs:sameAs "https://dbpedia.org/page/Review"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/State
+:State rdf:type owl:Class ;
+       rdfs:subClassOf :Flight ;
+       rdfs:comment "A flight which origin and destination are in the same state"@en ;
+       rdfs:label "State flight"@en .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo/Wide-body
+:Wide-body rdf:type owl:Class ;
+           rdfs:subClassOf :Airliners ;
+           rdfs:comment "A plain with 2 corridors or more" ;
+           rdfs:label "WideBody airplain"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo#Boeing
+:Boeing rdf:type owl:NamedIndividual ,
+                 :Manufacturer .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo#Boeing727
+:Boeing727 rdf:type owl:NamedIndividual ,
+                    :Narrow-body ;
+           :isMadeBy :Boeing ;
+           :isPropertyOf :Ryanair .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo#Ryanair
+:Ryanair rdf:type owl:NamedIndividual ,
+                  :Flight_company .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo#Ulises_123
+:Ulises_123 rdf:type owl:NamedIndividual ,
+                     :First_class ;
+            :hasFlight :vuelo_id123456 .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo#review_vuelo-id123456_passenger-ulises
+:review_vuelo-id123456_passenger-ulises rdf:type owl:NamedIndividual ,
+                                                 :Reviw ;
+                                        :isAbout :vuelo_id123456 ;
+                                        :hasBeenWritenBy :Ulises_123 ;
+                                        :hasDate "24-04-2024" ;
+                                        :hasRating "2/1"^^owl:rational .
+
+
+###  http://www.semanticweb.org/asus/ontologies/2024/3/ReseñasDeVuelo#vuelo_id123456
+:vuelo_id123456 rdf:type owl:NamedIndividual ,
+                         :Flight ;
+                :hasTakenPlaceIn :Boeing727 ;
+                :hasDate "24-04-2024" ;
+                :hasDestinationState "Spain" ;
+                :hasOriginState "Spain" .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<urn:swrl:var#a> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#p> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#f> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#r> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#d> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#o> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Planes ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#a>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Passenger ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#p>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Flight ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#f>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasFlight ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#p> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#f>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasTakenPlaceIn ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#f> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#a>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Airliners ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#a>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Reviw ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#r>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Flight ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#f>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :isAbout ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#r> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#f>
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Airplane_flight_review ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#r>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Flight ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#f>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasDestinationState ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#f> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#d>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasOriginState ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#f> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#o>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#arguments> ( <urn:swrl:var#d>
+                                                                                                                                     <urn:swrl:var#o>
+                                                                                                                                   )
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :State ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#f>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
